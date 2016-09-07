@@ -1,0 +1,131 @@
+﻿@{
+    ViewBag.Title = "Check API for Logging system";
+}
+<script src="~/Script/angular.min.js"></script>
+<link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Script/jquery-2.1.3.min.js"></script>
+<script src="~/Script/MainScript.js"></script>
+<script src="~/Script/SHA256_crypt.js"></script>
+
+<style type="text/css">
+    .buttonTop {
+        border-bottom:solid;
+        border-bottom-width:1px;
+        border-right:solid;
+        border-right-width:1px;
+        padding:0;
+        margin:0
+    }
+</style>
+
+<br />
+<div ng-app="angularBasic" ng-controller="ApiController" data-ng-init="init()">
+    <div class="container">
+        <form class="well form-horizontal">
+            <fieldset>
+                <div class="control-group">
+                    <div class="col-lg-7">
+                        <label style="font-size:20px" for="login">Check API for Logging system</label>
+                    </div>
+                    <div class="col-lg-5" ng-show="isAutorized">
+                        <p class="col-lg-8" >You entered as: <span>{{userName}}</span></p>
+                        @*<input type="button" class="btn" value="Log out" id="logOut" />*@
+                    </div>
+                    <div class="col-lg-5" ng-hide="isAutorized">
+                        <input id="login" type="text" class="input-small" ng-model="userName" placeholder="Login">
+                        <input type="password" class="input-small" ng-model="userPass" placeholder="Password">
+                        <button type="button" class="btn" ng-click="loginInSystem()">Log in</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <div class="container">
+        <ul class="nav nav-pills" style="border:solid;border-width:1px;">
+            <li class="buttonTop">
+                <a style="height:40px" class="glyphicon glyphicon-arrow-down" ng-click="ShowPeriodButtons()"></a>
+            </li>
+            <li class="buttonTop">
+                <a ng-click="LoadLogSheets()">Search by LogSheet & Video</a>
+            </li>
+        </ul>
+        <ul class="nav nav-pills" ng-show="period" style="border:solid;border-width:1px;">
+            <li ng-repeat="item in PeriodList" class="buttonTop">
+                <a ng-click="FilterLogshets(item.Id)">{{item.Name}}</a>
+            </li>
+        </ul>
+        <ul class="nav nav-pills" style="border:solid;border-width:1px;max-height:43px">
+            <li class="buttonTop">
+                <a ng-click="LoadRows()">All</a>
+            </li>
+            <li>
+            <li class="buttonTop">
+                <a ng-click="previous()" style="height:40px" class="glyphicon glyphicon-arrow-left"></a>
+            </li>
+            <li class="buttonTop">
+                <a ng-click="next()" style="height:40px" class="glyphicon glyphicon-arrow-right"></a>
+            </li>
+            </li>
+            <li ng-repeat="item in LogSheetsOnFormPagin" class="buttonTop" style="overflow:hidden;white-space: nowrap;">
+                <a style="min-height:40px;width:80px;" ng-click="GetInfoByLogshets(item.Id)">{{item.Name}}</a>
+            </li>
+        </ul>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Type</th>
+                    <th>Keywords</th>
+                    <th>Names</th>
+                    <th>Quality</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in InfoList">
+                    <td>{{ item.Time }}</td>
+                    <td>{{ item.Type }}</td>
+                    <td>{{ item.Keywords }}</td>
+                    <td>{{ item.Names }}</td>
+                    <td>{{ item.Quality }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    @*<p>My name is : {{"Please make me upper case letter".toUpperCase()}}</p>
+        <p>Add me please: 2+2: {{ 2+2 }}</p>
+        <b>ng-init</b><br />
+        <div ng-init="myFavoriteWebsites=['http://www.c-sharpcorner.com/','http://www.codeproject.com/','http://sibeeshpassion.com/']">
+            My First fav website is : {{myFavoriteWebsites[0]}}
+            <br />
+            My Second fav website is : {{myFavoriteWebsites[1]}}
+            <br />
+            My Third fav website is : {{myFavoriteWebsites[2]}}
+        </div>
+        <br />
+        <b>ng-model</b><br />
+        Currency in INR:
+        <input type="number" ng-model="curinr" />
+        <br />
+        Currency in Dollar: {{curinr*62.27}}
+        <br />
+        <b>nd-repeat</b><br />
+        <div ng-init="myFavoriteWebsites=['http://www.c-sharpcorner.com/','http://www.codeproject.com/','http://sibeeshpassion.com/']">
+            <ul>
+                My favorite websites are:
+                <li ng-repeat="n in myFavoriteWebsites">{{n}}
+                </li>
+            </ul>
+        </div>
+        <b>ng-Controller</b><br />
+        <div >
+            Currency in INR:
+            <input type="number" ng-model="inrvalue" />
+            <br />
+            Currency in Dollar:  {{inrToDollar()}}
+        </div>
+        <br />*@
+</div>
+<script>
+</script>
